@@ -9,11 +9,11 @@
 #define ENC_TYPE 1                  /// тип энкодера, 0 или 1
 
 #define encoderPinA 5               /// пин A энкодера
-#define encoderPinB 6               /// пин B энкодера
+#define encoderPinB 7               /// пин B энкодера
 
 #define pinGas 10                   /// пин Газа
 #define pinBrake 9                 /// пин тормоза
-#define pinClutch 8                /// пин Сцепления
+#define pinClutch 6                /// пин Сцепления
 
 #define button1Pin 15               /// пин Кнопки1
 #define button2Pin 14               /// пин Кнопки2
@@ -215,13 +215,13 @@ void read() {
         clutch = constrain(map(RawValueClutch, clutchMin - pedalAdjustmentClutchMin, clutchMax + pedalAdjustmentClutchMax, -128, 127), -128, 127);
     }
 
-    //Serial.print("gas: "); Serial.print(gas); Serial.print(" brake: "); Serial.print(brake); Serial.print(" clutch: "); Serial.println(clutch);
+    Serial.print("gas: "); Serial.print(gas); Serial.print(" brake: "); Serial.print(brake); Serial.print(" clutch: "); Serial.println(clutch);
     
 
     // Передача значений в игровой контроллер
     Gamepad.xAxis(wheel);
     Gamepad.yAxis(gas);
-    Gamepad.ryAxis(brake);
+    Gamepad.zAxis(brake);
     Gamepad.rzAxis(clutch);
 
     // Отправка данных игровому контроллеру
